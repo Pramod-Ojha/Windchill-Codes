@@ -11,6 +11,7 @@ import wt.pds.StatementSpec;
 import wt.query.QuerySpec;
 import wt.query.SearchCondition;
 import wt.type.ClientTypedUtility;
+import wt.vc.VersionControlHelper;
 
 public class ListAllParts implements RemoteAccess, Serializable {
 	
@@ -33,6 +34,8 @@ public class ListAllParts implements RemoteAccess, Serializable {
 		QueryResult queryResult= PersistenceHelper.manager.find((StatementSpec)querySpecPart);
 		System.out.println("Size of the Result: "+queryResult.size());
 		
+		
+		
 		while(queryResult.hasMoreElements()) {
 			WTPart part = (WTPart)queryResult.nextElement();
 			String type1 = ClientTypedUtility.getTypeIdentifier(part).getTypename();
@@ -42,7 +45,7 @@ public class ListAllParts implements RemoteAccess, Serializable {
 			System.out.println("Lifecycle Name: "+part.getLifeCycleName());
 			System.out.println("Lifecycle State: "+part.getLifeCycleState());	
 			System.out.println("Object Subtype: "+type1);
-			System.out.println("Object Version: "+part.getVersionDisplayIdentifier());
+			System.out.println("Object Version: "+VersionControlHelper.getIterationDisplayIdentifier(part));
 		}
 	}
 
