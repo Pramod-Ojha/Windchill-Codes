@@ -17,39 +17,57 @@ import wt.vc.config.ConfigHelper;
 import wt.vc.config.LatestConfigSpec;
 
 /**
- * This class is used to get the Latest Object
+ * This class is used to get the latest WTPart object from Windchill.
+ * It demonstrates fetching the latest revision and iteration of a part based on its number.
  */
-public class LatestParts implements RemoteAccess, Serializable{
-	
-	private static final long serialVersionUID=1L;
+public class LatestParts implements RemoteAccess, Serializable {
+    
+    private static final long serialVersionUID = 1L; // Required for Serializable interface to ensure versioning.
 
-	public static void main(String[] args) throws Exception {
-		
-		RemoteMethodServer remoteMethodServer = RemoteMethodServer.getDefault();
-		remoteMethodServer.setUserName("wcadmin");
-		remoteMethodServer.setPassword("wcadmin");
-		
-		getLatestParts();
-	}
-	
-	public static void getLatestParts() throws Exception {
-		
-		QuerySpec querySpecPart = new QuerySpec(WTPart.class);
-		querySpecPart.appendWhere(new SearchCondition(WTPart.class,WTPart.NUMBER,SearchCondition.EQUAL,"GPLM-00010021"), new int[] {0});
-		QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec)querySpecPart);
-		System.out.println("Size of the Result:     "+ queryResult.size());
-		
-		
-		if (queryResult.hasMoreElements()) {
-			WTPart part = (WTPart)queryResult.nextElement();
-			WTPartMaster partMaster = part.getMaster();
-			QueryResult result = ConfigHelper.service.filteredIterationsOf(partMaster, new LatestConfigSpec());
-			System.out.println("Master Object Size: "+result.size());
-			
-			WTPart latestObject = (WTPart) result.nextElement();
-			String type = ClientTypedUtility.getTypeIdentifier(latestObject).getTypename();
-			System.out.println(latestObject.getName()+ "  " + VersionControlHelper.getIterationDisplayIdentifier(latestObject)+"   "+ type);
-		}
-	}
+    public static void main(String[] args) throws Exception {
+        
+        // Establishing a connection with the Windchill Remote Method Server (RMS).
+        RemoteMethodServer remoteMethodServer = RemoteMethodServer.getDefault();
+        remoteMethodServer.setUserName("wcadmin"); 
+        remoteMethodServer.setPassword("wcadmin"); 
+        
+        // Invoking the method to fetch the latest WTPart.
+        getLatestPart();        
+    }
+    
+    /**
+     * This method retrieves the latest version and iteration of a WTPart object.
+     * It searches for a WTPart by its number, fetches all iterations, and filters out the latest.
+     * 
+     * @throws Exception in case of any issues during Windchill operations.
+     */
+    public static void getLatestPart() throws Exception {
+        
+        QuerySpec querySpecPart = new QuerySpec(WTPart.class);
+        querySpecPart.appendWhere(
+                new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL, "GPLM-00010021"), null);
+        QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec) querySpecPart);
+        System.out.println("Size of the Result:    " + queryResult.size());
+        
+        if (queryResult.hasMoreElements()) {
+            
+            WTPart part = (WTPart) queryResult.nextElement(); // Fetch the first WTPart object from the result.
 
+            // Retrieve the master object (WTPartMaster) for the part.
+            // WTPartMaster represents the identity of the part across all versions and iterations.
+            WTPartMaster partMaster = part.getMaster();
+
+            // Retrieve all iterations of the partMaster and filter them to get the latest iteration.
+            QueryResult latestResult = ConfigHelper.service.filteredIterationsOf(partMaster, new LatestConfigSpec());            
+            WTPart latestObject = (WTPart) latestResult.nextElement(); // Fetch the latest WTPart object from the filtered results.
+            String type = ClientTypedUtility.getTypeIdentifier(latestObject).getTypename(); // Get the part type name using ClientTypedUtility.
+
+            // Print details of the latest part object.
+            System.out.println("\nPart Name:             " + latestObject.getName());
+            System.out.println("Part Number:           " + latestObject.getNumber());
+            System.out.println("Part Latest Version:   " + VersionControlHelper.getIterationDisplayIdentifier(latestObject));
+            System.out.println("Part Type Name:        " + type);
+        }
+    }
 }
+
