@@ -17,7 +17,7 @@ import wt.vc.config.LatestConfigSpec;
 import wt.vc.wip.WorkInProgressHelper;
 import wt.vc.wip.Workable;
 
-public class ObjectCheckIn implements RemoteAccess, Serializable {
+public class WTPartCheckIn implements RemoteAccess, Serializable {
 
     private static final long serialVersionUID = 1L;
 

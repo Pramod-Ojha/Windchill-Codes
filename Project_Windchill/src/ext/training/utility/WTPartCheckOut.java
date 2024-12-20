@@ -13,7 +13,7 @@ import wt.query.SearchCondition;
 import wt.vc.VersionControlHelper;
 import wt.vc.wip.WorkInProgressHelper;
 
-public class ObjectCheckOut implements RemoteAccess, Serializable {
+public class WTPartCheckOut implements RemoteAccess, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
