@@ -45,7 +45,7 @@ public class LatestParts implements RemoteAccess, Serializable {
         
         QuerySpec querySpecPart = new QuerySpec(WTPart.class);
         querySpecPart.appendWhere(
-                new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL, "GPLM-00010021"), null);
+                new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL, "GPLM-01010021"), null);
         QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec) querySpecPart);
         System.out.println("Size of the Result:    " + queryResult.size());
         
@@ -67,6 +67,9 @@ public class LatestParts implements RemoteAccess, Serializable {
             System.out.println("Part Number:           " + latestObject.getNumber());
             System.out.println("Part Latest Version:   " + VersionControlHelper.getIterationDisplayIdentifier(latestObject));
             System.out.println("Part Type Name:        " + type);
+        }
+        else {
+        	System.out.println("No Element found in the WTPart table");
         }
     }
 }
