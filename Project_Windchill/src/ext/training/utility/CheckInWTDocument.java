@@ -45,27 +45,23 @@ public class CheckInWTDocument implements RemoteAccess, Serializable {
         try {
             // Add search condition for WTDocument.NUMBER
             querySpecDoc.appendWhere(
-                new SearchCondition(WTDocument.class, WTDocument.NUMBER, SearchCondition.EQUAL, "0000000022"), null);
+                new SearchCondition(WTDocument.class, WTDocument.NUMBER, SearchCondition.EQUAL, "0000000024"), null);
             
             // Execute query and get results
             QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec) querySpecDoc);
-            System.out.println("\nNumber of matching documents: " + queryResult.size());
+            System.out.println("\nNumber of matching documents: ----------------- " + queryResult.size());
             
             // Process the result to fetch the latest iteration of the document
             if (queryResult.hasMoreElements()) {
                 // Fetch the WTDocument object from the query result
                 WTDocument doc = (WTDocument) queryResult.nextElement();
-                System.out.println("Found WTDocument: " + doc.getName());
+                System.out.println("\nFound WTDocument: " + doc.getName());
 
                 // Retrieve the master reference of the document
                 WTDocumentMaster docMaster = (WTDocumentMaster) doc.getMaster();
 
                 // Retrieve the latest iteration of the document
                 QueryResult latestResult = ConfigHelper.service.filteredIterationsOf(docMaster, new LatestConfigSpec());
-                if (!latestResult.hasMoreElements()) {
-                    System.out.println("No latest iteration found for document master.");
-                    return;
-                }
 
                 // Fetch the latest WTDocument object
                 WTDocument latestDoc = (WTDocument) latestResult.nextElement();

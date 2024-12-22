@@ -34,7 +34,7 @@ public class CheckInWTPart implements RemoteAccess, Serializable {
         try {
             // Add a condition to query for the part by its unique number
             querySpecPart.appendWhere(
-                    new SearchCondition(WTPart.class, WTPart.NAME, SearchCondition.EQUAL, "Test Part"), null);
+                    new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL, "GPLM-00010003"), null);
 
             // Execute the query to find the WTPart
             QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec)querySpecPart);
@@ -57,7 +57,7 @@ public class CheckInWTPart implements RemoteAccess, Serializable {
                     // Check if the part is checked out before attempting to check it in
                     if (WorkInProgressHelper.isCheckedOut(latestObject)) {
                         System.out.println("Checking In the Part");
-                        WorkInProgressHelper.service.checkin((Workable) latestObject, "Checked In through code for training- 6");
+                        WorkInProgressHelper.service.checkin((Workable) latestObject, "Checked In through code for training- 1");
                         System.out.println("Object is Checked In");
 
                         // Refresh the object to retrieve the updated version

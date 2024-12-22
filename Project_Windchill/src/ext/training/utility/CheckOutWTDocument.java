@@ -44,14 +44,14 @@ public class CheckOutWTDocument implements RemoteAccess, Serializable{
 		
 		try {
 			querySpecDoc.appendWhere(
-					new SearchCondition(WTDocument.class, WTDocument.NUMBER, SearchCondition.EQUAL,"0000000022"), null); //Search condition to search specific WTDocument
+					new SearchCondition(WTDocument.class, WTDocument.NUMBER, SearchCondition.EQUAL,"0000000024"), null); //Search condition to search specific WTDocument
 			QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec)querySpecDoc);
-			System.out.println("Size of the Result:---------------"+queryResult.size());
+			System.out.println("Size of the Result:--------------- "+queryResult.size());
 			
 			//Searching for latest version of the WTDocument
 			if(queryResult.hasMoreElements()) {
 				WTDocument doc = (WTDocument) queryResult.nextElement();
-				System.out.println("Found WTDocument:   " + doc.getName());
+				System.out.println("\nFound WTDocument:   " + doc.getName());
 				WTDocumentMaster docMaster = (WTDocumentMaster) doc.getMaster(); //Association of WTDocument object to it's WTDocumentMaster object.
 				QueryResult latestResult = ConfigHelper.service.filteredIterationsOf(docMaster, new LatestConfigSpec()); //Searching for latest Iteration.
 				WTDocument latestDoc = (WTDocument) latestResult.nextElement();
