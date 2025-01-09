@@ -8,7 +8,6 @@ import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
 import wt.method.RemoteAccess;
 import wt.method.RemoteMethodServer;
-import wt.part.PartDocHelper;
 import wt.part.WTPart;
 import wt.part.WTPartHelper;
 import wt.part.WTPartMaster;

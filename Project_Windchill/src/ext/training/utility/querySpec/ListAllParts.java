@@ -30,7 +30,7 @@ public class ListAllParts implements RemoteAccess, Serializable {
 	public static void getPart() throws Exception{
 		
 		QuerySpec querySpecPart = new QuerySpec(WTPart.class);
-		querySpecPart.appendWhere(new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL, "GPLM-00010021"), new int[] {0});
+		//querySpecPart.appendWhere(new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL, "GPLM-00010021"), new int[] {0});
 		QueryResult queryResult= PersistenceHelper.manager.find((StatementSpec)querySpecPart);
 		System.out.println("Size of the Result: "+queryResult.size());
 		
