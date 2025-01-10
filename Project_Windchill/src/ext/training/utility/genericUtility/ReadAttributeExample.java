@@ -44,8 +44,6 @@ public static void main(String[] args) throws Exception{
 		attributeList.add(address);
 
 		QuerySpec qs = new QuerySpec(WTDocument.class);
-		//WTDocument  doc = null;
-		//boolean islatest=true;
 		System.out.println("Into Retriving IBA  value ");
 		try{
 			qs.appendWhere(new SearchCondition(WTDocument.class,WTDocument.NUMBER, SearchCondition.EQUAL,"0000000037"), null);
