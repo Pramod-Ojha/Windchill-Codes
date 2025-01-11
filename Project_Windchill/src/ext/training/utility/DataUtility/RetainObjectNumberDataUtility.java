@@ -136,7 +136,7 @@ public class RetainObjectNumberDataUtility extends DefaultDataUtility {
 
 			return number;
 		}
-		else if(mode.equals(ComponentMode.EDIT))
+		else if(!mode.equals(ComponentMode.VIEW))
 		{
 			guiComp.setComponentHidden(true);
 			return object;

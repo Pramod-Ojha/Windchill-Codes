@@ -33,6 +33,7 @@ public class LatestIterationOfAllParts implements RemoteAccess, Serializable {
     }
 
     public static void getLatestParts() throws Exception {
+    	//System.out.println("Current user: " + SessionHelper.manager.getPrincipal());
         QuerySpec querySpecPart = new QuerySpec(WTPart.class);
         QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec) querySpecPart);
         System.out.println("Total WTParts in the system: " + queryResult.size());
@@ -61,6 +62,7 @@ public class LatestIterationOfAllParts implements RemoteAccess, Serializable {
                 System.out.println(latestPart.getName() + "  "
                         + VersionControlHelper.getIterationDisplayIdentifier(latestPart) + "   " + type);
             }
+            
         }
     }
 }

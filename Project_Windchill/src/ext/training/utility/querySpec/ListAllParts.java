@@ -1,7 +1,6 @@
 package ext.training.utility.querySpec;
 
 import java.io.Serializable;
-
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
 import wt.method.RemoteAccess;
@@ -9,7 +8,6 @@ import wt.method.RemoteMethodServer;
 import wt.part.WTPart;
 import wt.pds.StatementSpec;
 import wt.query.QuerySpec;
-import wt.query.SearchCondition;
 import wt.type.ClientTypedUtility;
 import wt.vc.VersionControlHelper;
 
