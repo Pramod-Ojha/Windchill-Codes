@@ -38,16 +38,19 @@ public class GetAttributeValue implements RemoteAccess, Serializable{
 		String name = "name";
 		String number = "number";
 		String country = "Country";
+		String testAttr = "TestAttr";
 		
 		List<String> attrList = new ArrayList<String>();
 		attrList.add(name);
 		attrList.add(number);
-		attrList.add(country);		
+		attrList.add(country);
+		attrList.add(testAttr);
 		
 		QuerySpec querySpec = new QuerySpec(WTPart.class);
-		querySpec.appendWhere(new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL,"0000000007"), null);
+		querySpec.appendWhere(new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL,"0000000008"), null);
 		QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec)querySpec);
 		System.out.println("Size of queryResult: -------- "+queryResult.size());
+		System.out.println();
 		
 		if(queryResult.hasMoreElements()) {
 			WTPart part = (WTPart) queryResult.nextElement();
@@ -60,7 +63,7 @@ public class GetAttributeValue implements RemoteAccess, Serializable{
 			adapter.load(attrList);
 			for(String attribute : attrList) {
 				Object value = adapter.get(attribute);
-				System.out.println("\nAttribute: "+attribute +"     "+ "Value: "+value);
+				System.out.println("Attribute: "+attribute +"     "+ "Value: "+value);
 			}
 		}else {
 			System.out.println("No Result found");
