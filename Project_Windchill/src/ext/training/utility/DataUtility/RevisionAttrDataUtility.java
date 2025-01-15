@@ -1,7 +1,5 @@
 package ext.training.utility.DataUtility;
 
-import java.io.Serializable;
-
 import com.ptc.core.components.descriptor.ModelContext;
 import com.ptc.core.components.factory.dataUtilities.DefaultDataUtility;
 import com.ptc.core.components.rendering.guicomponents.AttributeGuiComponent;
