@@ -33,7 +33,7 @@ public class FilterBasedOnLifecycleState extends DefaultSimpleValidationFilter {
 	}
 	/*
 	 * 	
-	<Service context="default" name="com.ptc.core.ui.SimpleValidationFilter"
+	<Service context="default" name="com.ptc.core.ui.validation.SimpleValidationFilter"
 				targetFile="codebase/service.properties">
 			<Option cardinality="duplicate" requestor="null" selector="actionVisibilityFilter"
 			serviceClass="ext.training.custom.Filters.FilterBasedOnLifecycleState"/>
