@@ -1,4 +1,4 @@
-package ext.training.utility.genericUtility;
+package ext.training.custom.genericUtility;
 
 import java.io.Serializable;
 import wt.method.RemoteAccess;

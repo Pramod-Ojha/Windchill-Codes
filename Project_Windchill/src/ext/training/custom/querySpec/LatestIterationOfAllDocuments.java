@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ext.training.utility.querySpec;
+package ext.training.custom.querySpec;
 
 import java.io.Serializable;
 

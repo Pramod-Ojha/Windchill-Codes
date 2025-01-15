@@ -1,4 +1,4 @@
-package ext.training.utility.DataUtility;
+package ext.training.custom.DataUtility;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class AttributeHelpIcon extends DefaultDataUtility {
 	  "codebase/com/ptc/core/components/components.dataUtilities.properties">
 	  <Option cardinality="singleton" order="0" overridable="true"
 	  requestor="java.lang.Object" selector="HelpAttribute"
-	  serviceClass="ext.training.utility.DataUtility.AttributeHelpIcon"/>
+	  serviceClass="ext.training.custom.DataUtility.AttributeHelpIcon"/>
 	  </Service>
 	 */
 

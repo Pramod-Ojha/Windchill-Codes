@@ -1,4 +1,4 @@
-package ext.training.utility.genericUtility;
+package ext.training.custom.genericUtility;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;

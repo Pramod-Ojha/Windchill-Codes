@@ -1,4 +1,4 @@
-package ext.training.utility.DataUtility;
+package ext.training.custom.DataUtility;
 
 import com.ptc.core.components.descriptor.ModelContext;
 import com.ptc.core.components.factory.dataUtilities.DefaultDataUtility;

@@ -1,4 +1,4 @@
-package ext.training.utility.DataUtility;
+package ext.training.custom.DataUtility;
 
 import com.ptc.core.components.descriptor.ModelContext;
 import com.ptc.core.components.factory.dataUtilities.DefaultDataUtility;
@@ -40,7 +40,7 @@ public class LifecycleIconDataUtility extends DefaultDataUtility {
 			targetFile= "codebase/com/ptc/core/components/components.dataUtilities.properties">
 		<Option cardinality="singleton" order="0" overridable="true"
 		requestor="java.lang.Object" selector="lifecycleIconDataUtility"
-		serviceClass="ext.training.utility.DataUtility.LifecycleIconDataUtility"/>
+		serviceClass="ext.training.custom.DataUtility.LifecycleIconDataUtility"/>
 		</Service>
 */
 	
