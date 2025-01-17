@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ptc.core.lwc.server.PersistableAdapter;
-import com.ptc.core.meta.common.UpdateOperationIdentifier;
-
+import com.ptc.core.meta.common.DisplayOperationIdentifier;
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
 import wt.method.RemoteAccess;
@@ -47,7 +46,7 @@ public class GetAttributeValue implements RemoteAccess, Serializable{
 		attrList.add(testAttr);
 		
 		QuerySpec querySpec = new QuerySpec(WTPart.class);
-		querySpec.appendWhere(new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL,"0000000008"), null);
+		querySpec.appendWhere(new SearchCondition(WTPart.class, WTPart.NUMBER, SearchCondition.EQUAL,"GPLM-00010001"), null);
 		QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec)querySpec);
 		System.out.println("Size of queryResult: -------- "+queryResult.size());
 		System.out.println();
@@ -58,7 +57,7 @@ public class GetAttributeValue implements RemoteAccess, Serializable{
 			QueryResult latestResult = ConfigHelper.service.filteredIterationsOf(partMaster, new LatestConfigSpec());
 			WTPart latestPart = (WTPart) latestResult.nextElement();
 			
-			PersistableAdapter adapter = new PersistableAdapter(latestPart, null, null, new UpdateOperationIdentifier());
+			PersistableAdapter adapter = new PersistableAdapter(latestPart, null, null, new DisplayOperationIdentifier());
 			adapter.persist();
 			adapter.load(attrList);
 			for(String attribute : attrList) {
