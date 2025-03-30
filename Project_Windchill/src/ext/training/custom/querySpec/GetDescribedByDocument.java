@@ -8,6 +8,7 @@ import wt.fc.QueryResult;
 import wt.method.RemoteAccess;
 import wt.method.RemoteMethodServer;
 import wt.part.WTPart;
+import wt.part.WTPartDescribeLink;
 import wt.part.WTPartHelper;
 import wt.part.WTPartMaster;
 import wt.pds.StatementSpec;
@@ -49,12 +50,23 @@ public class GetDescribedByDocument implements RemoteAccess, Serializable{
 			System.out.println("\nPart name:   "+latestPart.getName());
 			System.out.println("Part latest Version: "+VersionControlHelper.getIterationDisplayIdentifier(latestPart));
 		
-			QueryResult refResult = WTPartHelper.service.getDescribedByDocuments(latestPart);
+			/*QueryResult refResult = WTPartHelper.service.getDescribedByDocuments(latestPart);
 			
 			while(refResult.hasMoreElements()) {
 			WTDocument desDoc = (WTDocument) refResult.nextElement();
 			System.out.println("\nDescribed by Document:   "+desDoc.getName()+ "     "+desDoc.getNumber());
-			System.out.println("DbD Version: "+VersionControlHelper.getIterationDisplayIdentifier(desDoc));
+			System.out.println("DbD Version: "+VersionControlHelper.getIterationDisplayIdentifier(desDoc));*/
+			
+			QueryResult qr = PersistenceHelper.manager.navigate(latestPart,WTPartDescribeLink.DESCRIBED_BY_ROLE, WTPartDescribeLink.class,false);
+
+			while (qr.hasMoreElements()){
+			WTPartDescribeLink link = (WTPartDescribeLink)qr.nextElement();
+			System.out.println("Found link ..........." + link);
+			WTDocument doc = link.getDescribedBy();
+			System.out.println("\nDescribed By Document ...."+ doc.getNumber());
+			System.out.println("Described by Document:   "+doc.getName());
+			System.out.println("DbD Version: "+VersionControlHelper.getIterationDisplayIdentifier(doc));
+			
 			}
 		
 		}

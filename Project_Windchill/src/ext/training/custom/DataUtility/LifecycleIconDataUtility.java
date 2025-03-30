@@ -25,8 +25,11 @@ public class LifecycleIconDataUtility extends DefaultDataUtility {
 		else if(state.equals("INWORK")) {
 			imgURL = "netmarkets/images/yellow.gif";
 		}
-		else {
+		else if (state.equals("CANCELLED")){
 			imgURL = "netmarkets/images/red.gif";
+		}
+		else {
+			imgURL = "netmarkets/images/black.gif";
 		}
 		
 		IconComponent iconComponent = new IconComponent(imgURL);

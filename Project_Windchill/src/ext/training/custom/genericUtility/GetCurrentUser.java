@@ -23,6 +23,7 @@ public class GetCurrentUser implements RemoteAccess, Serializable {
 		
 		WTUser currentUser = (WTUser)SessionHelper.manager.getPrincipal();
 		System.out.println(currentUser.getFullName());
+		System.out.println(currentUser.getName());
 		
 	}
 }

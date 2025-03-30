@@ -18,7 +18,7 @@ public class FilterBasedOnLifecycleState extends DefaultSimpleValidationFilter {
 		UIValidationStatus valStatus = UIValidationStatus.DISABLED;
 		
 		WTContained contextObj = (WTContained) valCriteria.getContextObject().getObject();
-		WTContainer container = contextObj.getContainer();
+		//WTContainer container = contextObj.getContainer();
 		
 		if(contextObj instanceof WTPart) {
 			WTPart part = (WTPart) contextObj;
